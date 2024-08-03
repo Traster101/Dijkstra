@@ -342,7 +342,6 @@ function gameLoop(diff) {
 
 
 	for (x = 0; x <= maxRow; x++){
-		console.log("layers", TREE_LAYERS)
 		for (item in TREE_LAYERS[x]) {
 			let layer = TREE_LAYERS[x][item]
 			if (player[layer].time == undefined) player[layer].time = new Decimal(0)

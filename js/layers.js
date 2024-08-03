@@ -2556,7 +2556,6 @@ addLayer("sg", {
 		autoPrestige() { return player.sg.auto && hasMilestone("q", 6) && player.ma.current!="sg" },
 		update(diff) {
 			player.sg.power = player.sg.power.plus(tmp.sg.effect.times(diff));
-			player.sg.time = player.sg.time.plus(diff);
 		},
 		canBuyMax() { return hasMilestone("q", 7) },
         row: 2, // Row the layer is in on the tree (0 is the first row)
@@ -2657,7 +2656,6 @@ addLayer("h", {
         ],
         doReset(resettingLayer){ 
 			let keep = [];
-			player.q.time = new Decimal(0);
 			player.q.energy = new Decimal(0);
 			player.h.chall31bought = 0;
 			if (hasMilestone("m", 1)) keep.push("challenges")
@@ -2966,7 +2964,6 @@ addLayer("q", {
         ],
         doReset(resettingLayer){ 
 			let keep = [];
-			player.q.time = new Decimal(0);
 			player.q.energy = new Decimal(0);
 			if (hasMilestone("ba", 0)) keep.push("upgrades");
 			if (layers[resettingLayer].row > this.row) layerDataReset(this.layer, keep)
@@ -2992,7 +2989,6 @@ addLayer("q", {
 			return softcap("qe", eff.times(improvementEffect("q", 23)));
 		},
 		update(diff) {
-			player.q.time = player.q.time.plus(diff);
 			if (tmp.q.enGainExp.gte(0)) player.q.energy = player.q.energy.plus(player.q.time.times(tmp.q.enGainMult).pow(tmp.q.enGainExp).times(diff));
 			if (hasMilestone("ba", 1) && player.q.auto && player.ma.current!="q") layers.q.buyables[11].buyMax();
 		},
@@ -3587,7 +3583,6 @@ addLayer("o", {
         ],
         doReset(resettingLayer){ 
 			let keep = [];
-			player.q.time = new Decimal(0);
 			player.q.energy = new Decimal(0);
 			if (layers[resettingLayer].row > this.row) layerDataReset(this.layer, keep)
         },
@@ -8520,7 +8515,6 @@ addLayer("ai", {
         doReset(resettingLayer){ 
 			let keep = [];
 			if (layers[resettingLayer].row == this.row) {
-				player.ai.time = new Decimal(0);
 				player.ai.consc = new Decimal(0);
 			}
 			if (layers[resettingLayer].row > this.row) layerDataReset(this.layer, keep)
@@ -8529,7 +8523,6 @@ addLayer("ai", {
         branches: ["r", ["id", 3]],
 		update(diff) {
 			if (!player[this.layer].unlocked) return;
-			player.ai.time = player.ai.time.plus(diff);
 			// player.ai.consc = player.ai.consc.plus(tmp.ai.buyables[11].effect.times(diff)).div(Decimal.pow(tmp.ai.divConsc, diff));
 			if (tmp.ai.divConsc.lte(1.00001)) player.ai.consc = player.ai.consc.add(tmp.ai.buyables[11].effect.mul(diff));
 			else player.ai.consc = player.ai.consc.add(tmp.ai.buyables[11].effect.mul(0.001).sub(player.ai.consc.mul(tmp.ai.divConsc.pow(0.001).sub(1))).mul(tmp.ai.divConsc.pow(0.001).sub(1).recip().mul(Decimal.sub(1, tmp.ai.divConsc.pow(0.001).recip().pow(diff*1000)))))
