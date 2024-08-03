@@ -1069,12 +1069,19 @@ function isFunction(obj) {
  */
 
 // Sets player[layer][{key}PerSecond]
-function setPerSecond(player, layer, valKey) {
+function setPerSecond(player, layer, valKey, {
+	shouldTrackMax = true
+}) {
 	player[layer][valKey + 'PerSecond'] = player[layer][valKey].div(player[layer].time)
+	if (shouldTrackMax) trackMax(player[layer], valueKey + 'PerSecond')
 }
 // Sets and gets player[layer][{key}PerSecond]
 function getPerSecond(player, layer, valKey) {
 	return player[layer][valKey + 'PerSecond']
+}
+
+function trackMax(valueLoc, key) {
+	valueLoc[key + 'Max'] = Decimal.max(valueLoc[key], valueLoc[key + 'Max'] == undefined ? new Decimal(0) :  valueLoc[key + 'Max'])
 }
   
 document.title = modInfo.name
