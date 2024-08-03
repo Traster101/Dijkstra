@@ -340,9 +340,9 @@ function gameLoop(diff) {
 	addTime(diff)
 	player.points = player.points.add(tmp.pointGen.times(diff)).max(0)
 
-	console.log(TREE_LAYERS)
 
 	for (x = 0; x <= maxRow; x++){
+		console.log("layers", TREE_LAYERS)
 		for (item in TREE_LAYERS[x]) {
 			console.log("updating: ", layer)
 			if (player[layer].time == undefined) {
