@@ -30,9 +30,7 @@ addLayer("p", {
 			if (hasUpgrade("p", 31)) exp = exp.times(1.05);
 			return exp;
         },
-		update(diff) {
-			player.p.time = new Decimal(diff).add(player.p.time);
-		},
+		showGainPerSec: true,
         row: 0, // Row the layer is in on the tree (0 is the first row)
         hotkeys: [
             {key: "p", description: "Press P to Prestige.", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -40,7 +38,6 @@ addLayer("p", {
         layerShown(){return true},
 		passiveGeneration() { return (hasMilestone("g", 1)&&player.ma.current!="p")?1:0 },
 		doReset(resettingLayer) {
-			player.p.time = new Decimal(0);
 			let keep = [];
 			if (hasMilestone("b", 0) && resettingLayer=="b") keep.push("upgrades")
 			if (hasMilestone("g", 0) && resettingLayer=="g") keep.push("upgrades")
@@ -50,7 +47,6 @@ addLayer("p", {
 			if (hasAchievement("a", 41)) keep.push("upgrades")
 			if (layers[resettingLayer].row > this.row) layerDataReset("p", keep)
 		},
-		showGainPerSec: true,
 		startData() { return {
 			unlocked: false,
 			points: new Decimal(0),
@@ -307,6 +303,8 @@ addLayer("b", {
         hotkeys: [
             {key: "b", description: "Press B to perform a booster reset", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
         ],
+		showGainPerSec: true,
+
         layerShown(){return player.p.unlocked},
 		automate() {},
 		resetsNothing() { return hasMilestone("t", 4)&&player.ma.current!="b" },
@@ -555,6 +553,7 @@ addLayer("b", {
 })
 
 addLayer("g", {
+		showGainPerSec: true,
         name: "generators", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "G", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 1, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -620,6 +619,7 @@ addLayer("g", {
 		update(diff) {
 			if (player.g.unlocked) player.g.power = player.g.power.plus(tmp.g.effect.times(diff));
 		},
+		showGainPerSec: true,
 		startData() { return {
 			unlocked: false,
 			points: new Decimal(0),
@@ -900,6 +900,7 @@ addLayer("g", {
 })
 
 addLayer("t", {
+		showGainPerSec: true,
         name: "time", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "T", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 1, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -1305,6 +1306,7 @@ addLayer("t", {
 })
 
 addLayer("e", {
+		showGainPerSec: true,
         name: "enhance", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "E", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 2, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -1577,6 +1579,7 @@ addLayer("e", {
 })
 
 addLayer("s", {
+		showGainPerSec: true,
         name: "space", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "S", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 3, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -2454,6 +2457,7 @@ addLayer("s", {
 })
 
 addLayer("sb", {
+		showGainPerSec: true,
         name: "super boosters", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "SB", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -2529,6 +2533,7 @@ addLayer("sb", {
 })
 
 addLayer("sg", {
+		showGainPerSec: true,
         name: "super generators", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "SG", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 4, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -2617,6 +2622,7 @@ addLayer("sg", {
 })
 
 addLayer("h", {
+		showGainPerSec: true,
         name: "hindrance", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "H", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 1, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -2920,6 +2926,7 @@ addLayer("h", {
 })
 
 addLayer("q", {
+		showGainPerSec: true,
         name: "quirks", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "Q", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 2, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -3528,7 +3535,8 @@ addLayer("q", {
 })
 
 addLayer("o", {
-	name: "solarity", // This is optional, only used in a few places, If absent it just uses the layer id.
+		showGainPerSec: true,
+		name: "solarity", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "O", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
         startData() { return {
@@ -3901,6 +3909,7 @@ addLayer("o", {
 })
 
 addLayer("ss", {
+		showGainPerSec: true,
         name: "subspace", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "SS", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 3, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -4126,6 +4135,7 @@ addLayer("ss", {
 })
 
 addLayer("m", {
+		showGainPerSec: true,
 		name: "magic", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "M", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 1, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -4510,6 +4520,7 @@ addLayer("m", {
 })
 
 addLayer("ba", {
+		showGainPerSec: true,
 		name: "balance", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "BA", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 3, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -4825,6 +4836,7 @@ addLayer("ba", {
 })
 
 addLayer("ps", {
+		showGainPerSec: true,
 		name: "phantom souls", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "PS", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 2, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -5145,6 +5157,7 @@ addLayer("ps", {
 })
 
 addLayer("hn", {
+		showGainPerSec: true,
 		name: "honour", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "HN", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 2, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -5756,6 +5769,7 @@ addLayer("hn", {
 })
 
 addLayer("n", {
+		showGainPerSec: true,
 		name: "nebula", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "N", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 1, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -5985,6 +5999,7 @@ addLayer("n", {
 })
 
 addLayer("hs", {
+		showGainPerSec: true,
 		name: "hyperspace", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "HS", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 3, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -6919,6 +6934,7 @@ addLayer("ma", {
 })
 
 addLayer("ge", {
+		showGainPerSec: true,
 		name: "gears", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "GE", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 1, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -7252,6 +7268,7 @@ addLayer("ge", {
 })
 
 addLayer("mc", {
+		showGainPerSec: true,
 		name: "machines", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "MC", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 3, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -7553,6 +7570,7 @@ addLayer("mc", {
 })
 
 addLayer("en", {
+		showGainPerSec: true,
 		name: "energy", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "EN", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -7761,6 +7779,7 @@ addLayer("en", {
 })
 
 addLayer("ne", {
+		showGainPerSec: true,
 		name: "neurons", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "NE", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 4, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -8091,6 +8110,7 @@ addLayer("id", {
 })
 
 addLayer("r", {
+		showGainPerSec: true,
 		name: "robots", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "R", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -8452,6 +8472,7 @@ addLayer("r", {
 })
 
 addLayer("ai", {
+		showGainPerSec: true,
 		name: "AI", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "AI", // This appears on the layer's node. Default is the id with the first letter capitalized
         position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order

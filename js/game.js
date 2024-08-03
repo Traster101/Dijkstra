@@ -128,6 +128,7 @@ function rowReset(row, layer) {
 		if(layers[lr].doReset) {
 
 			player[lr].activeChallenge = null // Exit challenges on any row reset on an equal or higher row
+			layers[lr].time = new Decimal(0)
 			layers[lr].doReset(layer)
 		}
 		else
@@ -344,7 +345,10 @@ function gameLoop(diff) {
 			if (!unl(layer)) continue;
 			let speed = (x<6&&layer!="en"&&layer!="ne"&&layer!="id"&&layer!="r")?tmp.row1to6spd:new Decimal(1)
 			if (tmp[layer].passiveGeneration) generatePoints(layer, speed.times(diff*tmp[layer].passiveGeneration));
-			if (layers[layer].update) layers[layer].update(speed.times(diff));
+			if (layers[layer].update) {
+				player[layer].time = new Decimal(diff).add(player[layer].time)
+				layers[layer].update(speed.times(diff))
+			};
 		}
 	}
 
