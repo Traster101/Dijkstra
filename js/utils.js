@@ -1070,13 +1070,13 @@ function isFunction(obj) {
 
 
 // Sets player[layer][{key}PerSecond]
-function setPerSecond(layer, valKey) {
+function setPerSecond(player, layer, valKey) {
 	const time = player[layer].time
 	const val = player[layer][valKey]
 	player[layer][valKey + 'PerSecond'] = val.div(time).times(1000)
 }
 // Sets and gets player[layer][{key}PerSecond]
-function getPerSecond(layer, valKey) {
+function getPerSecond(player, layer, valKey) {
 	return player[layer][valKey + 'PerSecond']
 }
   
