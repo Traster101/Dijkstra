@@ -1083,3 +1083,8 @@ function trackMax(valueLoc, key) {
 }
   
 document.title = modInfo.name
+
+function setPerSecondTemp(tmpLoc, playerLoc, key, shouldTrackMax = true) {
+	tmpLoc[key + 'PerSecond'] = tmpLoc[key].div(playerLoc.time)
+	if (shouldTrackMax) trackMax(tmpLoc, key + 'PerSecond')
+}
