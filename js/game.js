@@ -346,7 +346,7 @@ function gameLoop(diff) {
 			let speed = (x<6&&layer!="en"&&layer!="ne"&&layer!="id"&&layer!="r")?tmp.row1to6spd:new Decimal(1)
 			if (tmp[layer].passiveGeneration) generatePoints(layer, speed.times(diff*tmp[layer].passiveGeneration));
 			if (layers[layer].update) {
-				player[layer].time = new Decimal(diff).add(player[layer].time)
+				player[layer].time = new Decimal(speed.times(diff)).add(player[layer].time)
 				layers[layer].update(speed.times(diff))
 			};
 		}
@@ -356,7 +356,10 @@ function gameLoop(diff) {
 		for (item in OTHER_LAYERS[row]) {
 			let layer = OTHER_LAYERS[row][item]
 			if (tmp[layer].passiveGeneration) generatePoints(layer, diff*tmp[layer].passiveGeneration);
-			if (layers[layer].update) layers[layer].update(diff);
+			if (layers[layer].update) {
+				player[layer].time = new Decimal(speed.times(diff)).add(player[layer].time)
+				layers[layer].update(diff);
+			}
 		}
 	}	
 
