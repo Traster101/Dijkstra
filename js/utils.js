@@ -1068,10 +1068,9 @@ function isFunction(obj) {
  * Mod Utils
  */
 
-
 // Sets player[layer][{key}PerSecond]
 function setPerSecond(player, layer, valKey) {
-	player[layer][valKey + 'PerSecond'] = player[layer].time.div(player[layer][valKey])
+	player[layer][valKey + 'PerSecond'] = player[layer][valKey].div(player[layer].time)
 }
 // Sets and gets player[layer][{key}PerSecond]
 function getPerSecond(player, layer, valKey) {
