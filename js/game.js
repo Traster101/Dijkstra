@@ -349,7 +349,7 @@ function gameLoop(diff) {
 			if (tmp[layer].passiveGeneration) generatePoints(layer, speed.times(diff*tmp[layer].passiveGeneration));
 			if (layers[layer].update) {
 				if (player[layer].time == undefined)
-					player[layer].time = diff
+					player[layer].time = new Decimal(diff)
 				else
 					player[layer].time = new Decimal(speed.times(diff)).add(player[layer].time)
 				
