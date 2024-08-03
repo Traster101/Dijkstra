@@ -1071,7 +1071,7 @@ function isFunction(obj) {
 // Sets player[layer][{key}PerSecond]
 function setPerSecond(player, layer, valKey, shouldTrackMax = true) {
 	player[layer][valKey + 'PerSecond'] = player[layer][valKey].div(player[layer].time)
-	if (shouldTrackMax) trackMax(player[layer], valueKey + 'PerSecond')
+	if (shouldTrackMax) trackMax(player[layer], valKey + 'PerSecond')
 }
 // Sets and gets player[layer][{key}PerSecond]
 function getPerSecond(player, layer, valKey) {
