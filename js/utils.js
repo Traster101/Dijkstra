@@ -589,16 +589,12 @@ function milestoneShown(layer, id) {
 	switch(player.msDisplay) {
 		case "always": 
 			return true;
-			break;
 		case "automation": 
 			return (auto)||!complete
-			break;
 		case "incomplete":
 			return !complete
-			break;
 		case "never": 
 			return false;
-			break;
 	}
 	return false;
 }
@@ -852,7 +848,6 @@ var onTreeTab = true
 function showTab(name) {
 	if (LAYERS.includes(name) && !layerunlocked(name)) return
 
-	var toTreeTab = name == "none"
 	player.tab = name
 	if (player.navTab == "none") player.lastSafeTab = name
 	player.notify[name] = false
@@ -863,7 +858,6 @@ function showTab(name) {
 function showNavTab(name) {
 	if (LAYERS.includes(name) && !layerunlocked(name)) return
 
-	var toTreeTab = name == "tree"
 	player.navTab = name
 	player.notify[name] = false
 	needCanvasUpdate = true
@@ -910,7 +904,6 @@ function nodeShown(layer) {
 	switch(layer) {
 		case "idk":
 			return player.idk.unlocked
-			break;
 	}
 	return false
 }
@@ -1069,5 +1062,23 @@ function prestigeButtonText(layer)
 function isFunction(obj) {
 	return !!(obj && obj.constructor && obj.call && obj.apply);
   };
+
+
+/**
+ * Mod Utils
+ */
+
+
+// Sets player[layer][{key}PerSecond]
+function setPerSecond(layer, valKey) {
+	const time = player[layer].time
+	const val = player[layer][valKey]
+	player[layer][valKey + 'PerSecond'] = val.div(time).times(1000)
+}
+// Sets and gets player[layer][{key}PerSecond]
+function setGetPerSecond(layer, valKey) {
+	setPerSecond(layer, valKey)
+	return player[layer][valKey + 'PerSecond']
+}
   
 document.title = modInfo.name

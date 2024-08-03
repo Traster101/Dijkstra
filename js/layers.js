@@ -617,7 +617,10 @@ addLayer("g", {
 			return "<h3 style='color: #84b88a; text-shadow: #78c48f 0px 0px 10px;'> + "+formatWhole(tmp.sg.spectralTotal)+"</h3>"
 		},
 		update(diff) {
-			if (player.g.unlocked) player.g.power = player.g.power.plus(tmp.g.effect.times(diff));
+			if (player.g.unlocked) {
+				player.g.power = player.g.power.plus(tmp.g.effect.times(diff))
+				setPerSecond('g', 'power')
+			}
 		},
 		showGainPerSec: true,
 		startData() { return {
@@ -1011,8 +1014,12 @@ addLayer("t", {
 		},
 		autoPrestige() { return (player.t.auto && hasMilestone("q", 3))&&player.ma.current!="t" },
 		update(diff) {
-			if (player.t.unlocked) player.t.energy = player.t.energy.plus(this.effect().gain.times(diff)).min(this.effect().limit).max(0);
+			if (player.t.unlocked) {
+				player.t.energy = player.t.energy.plus(this.effect().gain.times(diff)).min(this.effect().limit).max(0);
+				setPerSecond('t', 'energy')
+			}
 			if (player.t.autoExt && hasMilestone("q", 1) && !inChallenge("h", 31)) this.buyables[11].buyMax();
+			
 		},
         row: 2, // Row the layer is in on the tree (0 is the first row)
         hotkeys: [
@@ -2556,6 +2563,7 @@ addLayer("sg", {
 		autoPrestige() { return player.sg.auto && hasMilestone("q", 6) && player.ma.current!="sg" },
 		update(diff) {
 			player.sg.power = player.sg.power.plus(tmp.sg.effect.times(diff));
+			setPerSecond('sg', 'power')
 		},
 		canBuyMax() { return hasMilestone("q", 7) },
         row: 2, // Row the layer is in on the tree (0 is the first row)
@@ -2989,7 +2997,10 @@ addLayer("q", {
 			return softcap("qe", eff.times(improvementEffect("q", 23)));
 		},
 		update(diff) {
-			if (tmp.q.enGainExp.gte(0)) player.q.energy = player.q.energy.plus(player.q.time.times(tmp.q.enGainMult).pow(tmp.q.enGainExp).times(diff));
+			if (tmp.q.enGainExp.gte(0)) {
+				player.q.energy = player.q.energy.plus(player.q.time.times(tmp.q.enGainMult).pow(tmp.q.enGainExp).times(diff));
+				setPerSecond('q', 'energy')
+			}
 			if (hasMilestone("ba", 1) && player.q.auto && player.ma.current!="q") layers.q.buyables[11].buyMax();
 		},
 		passiveGeneration() { return (hasMilestone("ba", 0)&&player.ma.current!="q")?1:0 },
@@ -3605,6 +3616,7 @@ addLayer("o", {
 			if (hasMilestone("m", 0) && player.ma.current!="o") {
 				for (let i in tmp.o.buyables) if (i!="rows" && i!="cols") if (tmp.o.buyables[i].unlocked) player.o.buyables[i] = player.o.buyables[i].plus(tmp.o.buyables[i].gain.times(diff));
 			}
+			setPerSecond('o', 'energy')
 		},
 		passiveGeneration() { return player.ma.current=="o"?0:(hasMilestone("m", 0)?1:(hasMilestone("o", 0)?0.05:0)) },
 		solPow() {
@@ -3955,6 +3967,7 @@ addLayer("ss", {
 		},
 		update(diff) {
 			if (player.ss.unlocked) player.ss.subspace = player.ss.subspace.plus(tmp.ss.effect.times(diff));
+			setPerSecond('ss', 'subspace')
 		},
         row: 3, // Row the layer is in on the tree (0 is the first row)
         hotkeys: [
@@ -4207,6 +4220,7 @@ addLayer("m", {
 				if (tmp.m.buyables[i].unlocked && player.m.auto && hasMilestone("hn", 2) && (!player.m.distrAll||tmp.t.effect2.gt(1)) && player.ma.current!="m") {
 					player.m.spellInputs[i] = (player.m.spellTimes[i].gt(0)?player.m.spellInputs[i].max(tmp.m.spellInputAmt):tmp.m.spellInputAmt);
                     player.m.hexes = player.m.hexes.plus(softcap("hexGain", tmp.m.hexGain.times(player.m.spellInputs[i]).times(diff)));
+					setPerSecond('m', 'hexes')
 					player.m.spellTimes[i] = tmp.m.spellTime;
 				} else if (player.m.spellTimes[i].gt(0)) player.m.spellTimes[i] = player.m.spellTimes[i].sub(diff).max(0);
 			}
@@ -4558,6 +4572,8 @@ addLayer("ba", {
 			if (!player.ba.unlocked) return;
 			player.ba.pos = player.ba.pos.plus(tmp.ba.posGain.times(diff));
 			player.ba.neg = player.ba.neg.plus(tmp.ba.negGain.times(diff));
+			setPerSecond('ba', 'pos')
+			setPerSecond('ba', 'neg')
 		},
 		passiveGeneration() { return (hasMilestone("hn", 1)&&player.ma.current!="ba")?1:0 },
 		dirBase() { return player.ba.points.times(10) },
@@ -4878,9 +4894,11 @@ addLayer("ps", {
 				if (player.ps.autoW) layers.ps.buyables[11].buyMax();
 				player.ps.souls = player.ps.souls.max(tmp.ps.soulGain.times(player.h.points.max(1).log10()))
 			} else player.ps.souls = player.ps.souls.plus(player.h.points.max(1).log10().sub(player.ps.prevH.max(1).log10()).max(0).times(tmp.ps.soulGain));
+			setPerSecond('ps', 'souls')
 			player.ps.prevH = new Decimal(player.h.points);
 			if (hasMilestone("hn", 7)) player.ps.power = player.ps.power.root(tmp.ps.powerExp).plus(tmp.ps.powerGain.times(diff)).pow(tmp.ps.powerExp);
 			else player.ps.power = new Decimal(0);
+			setPerSecond('ps', 'power')
 			if (player.ps.autoGhost && hasMilestone("ma", 0) && player.ma.current!="ps") layers.ps.buyables[21].buyMax();
 		},
 		autoPrestige() { return hasMilestone("hn", 4) && player.ps.auto && player.ma.current!="ps" },
@@ -5900,8 +5918,11 @@ addLayer("n", {
 		update(diff) {
 			if (!player.n.unlocked) return;
 			player.n.purpleDust = player.n.purpleDust.plus(tmp.n.effect.purple.times(diff));
+			setPerSecond('n', 'purpleDust')
 			player.n.blueDust = player.n.blueDust.plus(tmp.n.effect.blue.times(diff));
+			setPerSecond('n', 'blueDust')
 			player.n.orangeDust = player.n.orangeDust.plus(tmp.n.effect.orange.times(diff));
+			setPerSecond('n', 'orangeDust')
 		},
 		buyables: {
 			rows: 1,
@@ -6475,7 +6496,9 @@ addLayer("i", {
 		update(diff) {
 			if (!player.i.unlocked) return;
 			player.i.nb = player.i.nb.max(tmp.i.nbAmt);
+			setPerSecond('i', 'nb')
 			player.i.hb = player.i.hb.max(tmp.i.hbAmt);
+			setPerSecond('i', 'hb')
 		},
 		nbAmt() {
 			let amt = player.n.points.div(2e3).plus(1).log10().root(1.25)
@@ -7004,10 +7027,12 @@ addLayer("ge", {
 		update(diff) {
 			if (!player.ge.unlocked) return;
 			let factor = tmp.ge.gearSpeed
+			setPerSecond('ge', 'gearspeed')
 			player.ge.energy = player.ge.energy.plus(factor.times(diff).times(tmp.ge.clickables[12].effect));
 			player.ge.toothPower = player.ge.toothPower.plus(factor.times(diff));
 			player.ge.shrinkPower = player.ge.shrinkPower.plus(factor.times(diff));
 			player.ge.rotations = player.ge.rotations.plus(tmp.ge.rps.times(diff));
+			setPerSecond('ge', 'rotations')
 			player.ge.autoTime = player.ge.autoTime.plus(diff);
 			if (player.ge.auto && hasMilestone("ge", 3) && player.ge.autoTime.gte(.5)) {
 				player.ge.autoTime = new Decimal(0);
@@ -7308,6 +7333,7 @@ addLayer("mc", {
 		update(diff) {
 			if (!player[this.layer].unlocked) return;
 			player.mc.mechEn = player.mc.mechEn.plus(player.ge.rotations.times(tmp.mc.mechPer).times(diff)).times(tmp.mc.decayPower.pow(diff));
+			setPerSecond('mc', 'mechEn')
 			if (hasMilestone("id", 3) && player.mc.autoSE) layers.mc.buyables[11].buyMax();
 			if (hasMilestone("mc", 1) && player.mc.auto) {
 				player.mc.clickables[11] = player.mc.clickables[11].max(player.mc.mechEn.times(tmp.mc.mechEnMult));
@@ -7659,9 +7685,15 @@ addLayer("en", {
 				subbed = subbed.times(player.r.total.max(1));
 				if (hasMilestone("r", 4) && tmp.r) subbed = subbed.times(tmp.r.producerEff.max(1));
 				player.en.tw = player.en.tw.pow(1.5).plus(subbed.div(player.en.target==1?1:3)).root(1.5);
+				setPerSecond('en', 'tw')
 				player.en.ow = player.en.ow.pow(1.5).plus(subbed.div(player.en.target==2?1:3)).root(1.5);
+				setPerSecond('en', 'ow')
 				player.en.sw = player.en.sw.pow(sw_mw_exp*(hasMilestone("en", 4)?2.5:4)).plus(subbed.div(player.en.target==3?1:3)).root(sw_mw_exp*(hasMilestone("en", 4)?2.5:4));
-				if (hasMilestone("en", 3)) player.en.mw = player.en.mw.pow(sw_mw_exp*(hasMilestone("en", 4)?5.5:7)).plus(subbed.div(player.en.target==4?1:3)).root(sw_mw_exp*(hasMilestone("en", 4)?5.5:7));
+				setPerSecond('en', 'sw')
+				if (hasMilestone("en", 3)) {
+					player.en.mw = player.en.mw.pow(sw_mw_exp*(hasMilestone("en", 4)?5.5:7)).plus(subbed.div(player.en.target==4?1:3)).root(sw_mw_exp*(hasMilestone("en", 4)?5.5:7));
+					setPerSecond('en', 'mw')
+				}
 				
 			} else switch(player.en.target) {
 				case 1: 
@@ -7829,6 +7861,7 @@ addLayer("ne", {
 						player.ne.thoughts = player.ne.thoughts.plus(1);
 					}
 				}
+				setPerSecond('ne', 'signals')
 				if (player.ne.autoNN && hasMilestone("ne", 7)) layers.ne.buyables[11].buyMax();
 			}
 		},
@@ -8518,6 +8551,7 @@ addLayer("ai", {
 			// player.ai.consc = player.ai.consc.plus(tmp.ai.buyables[11].effect.times(diff)).div(Decimal.pow(tmp.ai.divConsc, diff));
 			if (tmp.ai.divConsc.lte(1.00001)) player.ai.consc = player.ai.consc.add(tmp.ai.buyables[11].effect.mul(diff));
 			else player.ai.consc = player.ai.consc.add(tmp.ai.buyables[11].effect.mul(0.001).sub(player.ai.consc.mul(tmp.ai.divConsc.pow(0.001).sub(1))).mul(tmp.ai.divConsc.pow(0.001).sub(1).recip().mul(Decimal.sub(1, tmp.ai.divConsc.pow(0.001).recip().pow(diff*1000)))))
+			setPerSecond('ai', 'consc')
 		},
 		divConsc() { return player.ai.time.plus(1).log10().plus(1).sqrt() },
 		conscEff1() { return player.ai.consc.plus(1) },
