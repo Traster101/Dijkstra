@@ -345,7 +345,7 @@ function gameLoop(diff) {
 		console.log("layers", TREE_LAYERS)
 		for (item in TREE_LAYERS[x]) {
 			let layer = TREE_LAYERS[x][item]
-			if (player[layer].time == undefined) player[layer].time = new Decimal(diff)
+			if (player[layer].time == undefined) player[layer].time = new Decimal(0)
 			if (!player[layer].unlocked) player[layer].first += diff;
 			if (!unl(layer)) continue;
 			let speed = (x<6&&layer!="en"&&layer!="ne"&&layer!="id"&&layer!="r")?tmp.row1to6spd:new Decimal(1)
