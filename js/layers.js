@@ -30,6 +30,9 @@ addLayer("p", {
 			if (hasUpgrade("p", 31)) exp = exp.times(1.05);
 			return exp;
         },
+		update(diff) {
+			player.p.time = new Decimal(diff).add(player.p.time);
+		},
         row: 0, // Row the layer is in on the tree (0 is the first row)
         hotkeys: [
             {key: "p", description: "Press P to Prestige.", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -37,6 +40,7 @@ addLayer("p", {
         layerShown(){return true},
 		passiveGeneration() { return (hasMilestone("g", 1)&&player.ma.current!="p")?1:0 },
 		doReset(resettingLayer) {
+			player.p.time = new Decimal(0);
 			let keep = [];
 			if (hasMilestone("b", 0) && resettingLayer=="b") keep.push("upgrades")
 			if (hasMilestone("g", 0) && resettingLayer=="g") keep.push("upgrades")
@@ -46,6 +50,7 @@ addLayer("p", {
 			if (hasAchievement("a", 41)) keep.push("upgrades")
 			if (layers[resettingLayer].row > this.row) layerDataReset("p", keep)
 		},
+		showGainPerSec: true,
 		startData() { return {
 			unlocked: false,
 			points: new Decimal(0),
