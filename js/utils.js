@@ -1076,8 +1076,7 @@ function setPerSecond(layer, valKey) {
 	player[layer][valKey + 'PerSecond'] = val.div(time).times(1000)
 }
 // Sets and gets player[layer][{key}PerSecond]
-function setGetPerSecond(layer, valKey) {
-	setPerSecond(layer, valKey)
+function getPerSecond(layer, valKey) {
 	return player[layer][valKey + 'PerSecond']
 }
   
