@@ -219,6 +219,8 @@ function doReset(layer, force=false) {
 
 	if (tmp[layer].resetsNothing) return
 
+	player[layer].time = new Decimal(0)
+
 
 	for (layerResetting in layers) {
 		if (row >= layers[layerResetting].row && (!force || layerResetting != layer)) completeChallenge(layerResetting)
