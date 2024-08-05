@@ -78,7 +78,7 @@ function formatTime(s) {
 
 function formatStopwatch(s) {
 	const seconds = (s % 60).toString();
-	if (seconds.includes('.')) seconds = seconds.substring(0, secStr.indexOf('.') + 4)
+	if (seconds.includes('.')) seconds = seconds.substring(0, seconds.indexOf('.') + 4)
 	s = Math.floor(s / 60)
 	if (s < 1) return `${seconds}s`
 	const minutes = s % 60
