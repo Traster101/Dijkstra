@@ -5,17 +5,17 @@ let help_data = {
 		id: "dijkstra",
 		title: "Dijkstra speedrun tools for PTR",
 		text: `This is a collection of tools designed for speedrunners to facilitate routing testing of runs. It intends to make no mechanical changes to PTR's base game. This is <b>NOT</b> a replacement for PTR for the purpose of speedrunning, and speedruns here <b>ARE NOT</b> valid PTR speedruns.
-		
-		<h3>Tools this mod adds</h3>
-		<b>Gain/Sec:</b> (most) nodes now display the average gain/sec since their current reset, as well as the best average gain/sec of their current reset. In addition, Certain secondary resources also display gain/sec info on their tab. In the future, this will also include log(gain)/sec.
-		
-		<b>QuickSave: </b>Pressing <em>K</em> will perform a quicksave and pressing <em>L</em> will perform a quickload to/from a save called quicksave. Time since the last quicksave is tracked, as well as the time spent in the previous quicksave.
-		
-		<h3>Other changes</h3>
-		Offline Mode and Autosave are off by default and cannot be turned on (autosave breaks quicksaving).
-		If you didn't notice the timer somehow, you do now.
-		The achievement Baseless Property has the correct reward note on it (PTR's note incorrectly claims Haunted Forever gives the reward Baseless Property actually does).
-		Nodes in the info tab show the "actual" time they were completed, in addition to what the game thinks. This is because the game's time displays the time since the page was loaded, but the players playtime is measured starting at the first prestige. In effect, the "real" time is the game's prestige time minus the game's row time. This is also formatted more precisely`,
+		<br>
+		<br><h3>Tools this mod adds</h3>
+		<br><b>Gain/Sec:</b> (most) nodes now display the average gain/sec since their current reset, as well as the best average gain/sec of their current reset. In addition, Certain secondary resources also display gain/sec info on their tab. In the future, this will also include log(gain)/sec.
+		<br>
+		<br><b>QuickSave: </b>Pressing <em>K</em> will perform a quicksave and pressing <em>L</em> will perform a quickload to/from a save called quicksave. Time since the last quicksave is tracked, as well as the time spent in the previous quicksave.
+		<br>
+		<br><h3>Other changes</h3>
+		<br>Offline Mode and Autosave are off by default and cannot be turned on (autosave breaks quicksaving).
+		<br>If you didn't notice the timer somehow, you do now.
+		<br>The achievement Baseless Property has the correct reward note on it (PTR's note incorrectly claims Haunted Forever gives the reward Baseless Property actually does).
+		<br>Nodes in the info tab show the "actual" time they were completed, in addition to what the game thinks. This is because the game's time displays the time since the page was loaded, but the players playtime is measured starting at the first prestige. In effect, the "real" time is the game's prestige time minus the game's row time. This is also formatted more precisely`,
 		unlocked: () => true
 	},
 	r1: {
