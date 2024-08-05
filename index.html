@@ -85,8 +85,7 @@
 			<div v-if="player.tab=='help' && (typeof help_data != 'undefined')" class="col right">
 				<div v-if="typeof tmp.helpTab == 'number'">
 					<button class="back" onclick="showTab('none')">←</button><br>
-					<div v-if="player.a.achievements.length==0">Why are you even here? You haven't started yet!</div>
-					<ul v-else><br><br><br><li v-for="data in tmp.helpData"><a v-if="data.unlocked" class="link" v-on:click="tmp.helpTab = data.id" v-html="data.title"></a><br></li></ul>
+					<ul><br><br><br><li v-for="data in tmp.helpData"><a v-if="data.unlocked" class="link" v-on:click="tmp.helpTab = data.id" v-html="data.title"></a><br></li></ul>
 				</div>
 				<div v-else>
 					<button class="back" onclick="tmp.helpTab = NaN">←</button><br>
