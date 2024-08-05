@@ -107,7 +107,8 @@ function setLocalStorage() {
 }
 
 function save(name=allSaves.set) {
-	allSaves[name] = player;
+	player.prevQuicksaveTime = player.timePlayed - player.quicksaveTime
+	allSaves[name] = JSON.parse(JSON.stringify(player));
 	setLocalStorage();
 }
 
@@ -278,6 +279,7 @@ function fixData(defaultData, newData) {
 
 function loadSave(name) {
 	allSaves.set = name;
+	allSaves[allSaves.set].prevQuicksaveTime = player.timePlayed - player.quicksaveTime
 	setLocalStorage();
 	window.location.reload();
 }
@@ -372,7 +374,7 @@ function resetSaveMenu() {
 
 function load() {
 	let get = localStorage.getItem(modInfo.id);
-	if (get===null || get===undefined) {
+	if (get == null) {
 		player = getStartPlayer()
 		allSaves = {set: "save1", save1: player}
 	} else {
@@ -1024,14 +1026,13 @@ document.onkeydown = function(e) {
 	} else if (key === 'k') {
 		// quicksave
 		player.quicksaveTime = player.timePlayed
-		save('quicksave')
-		loadQuicksave()
+		save()
+		load()
 	}
 }
 
 function loadQuicksave() {
-	allSaves.set = 'quicksave';
-	allSaves.quicksave.prevQuicksaveTime = player.timePlayed - player.quicksaveTime
+	allSaves[allSaves.set].prevQuicksaveTime = player.timePlayed - player.quicksaveTime
 	setLocalStorage();
 	window.location.reload();
 }
