@@ -1,6 +1,6 @@
 let modInfo = {
 	name: "Dijkstra Speedrun Tool for PTR",
-	id: "ptr",
+	id: "dijkstra",
 	author: "Jacorb",
 	pointsName: "points",
 	discordName: "PT Rewritten Server",
@@ -15,7 +15,7 @@ let modInfo = {
 // Set your version in num and name
 let VERSION = {
 	num: "1.3",
-	patch: 4,
+	patch: 5,
 	name: "The Quicksave Update",
 }
 
