@@ -77,7 +77,7 @@
 				<a class="link pat" href="http://patreon.com/Jacorb90" target="_blank" v-bind:style="{'font-size': '18px'}">Donate</a><br>
 				<br><br>
 				Time Played: {{ formatTime(player.timePlayed) }}<br>
-				<span v-for="layer in LAYERS"><span v-if="player[layer].first!==undefined && player[layer].unlocked">First {{layer}} reset: {{formatTime(player[layer].first)}}<br></span></span><br>
+				<span v-for="layer in LAYERS"><span v-if="player[layer].first!==undefined && player[layer].unlocked">First {{layer}} reset: {{formatTime(player[layer].first)}} (really {{ formatStopwatch(player[layer].first - player.p.first) }})<br></span></span><br>
 				<h3>Hotkeys</h3><br>
 				<span><br>k to quicksave</span>
 				<span><br>l to quickload</span>
