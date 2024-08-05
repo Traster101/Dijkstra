@@ -1,5 +1,5 @@
 let modInfo = {
-	name: "Dijkstra Speedrun Tool for PTR",
+	name: "Dijkstra Speedrun Tools for PTR",
 	id: "dijkstra",
 	author: "Jacorb",
 	pointsName: "points",
