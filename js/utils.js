@@ -1027,7 +1027,6 @@ document.onkeydown = function(e) {
 		// quicksave
 		player.quicksaveTime = player.timePlayed
 		save()
-		load()
 	}
 }
 
