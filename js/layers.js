@@ -9530,7 +9530,7 @@ addLayer("a", {
 				name: "Haunted Forever",
 				unlocked() { return hasAchievement("a", 111) },
 				done() { return player.ps.points.gte(1350) },
-				tooltip: "Reach 1,375 Phantom Souls. Reward: Shell Expansion's nerf to Gear size is now a buff.",
+				tooltip: "Reach 1,375 Phantom Souls.",
 				image: "images/achs/115.png",
 			},
 			121: {
@@ -9561,7 +9561,7 @@ addLayer("a", {
 				name: "Baseless Property",
 				unlocked() { return hasAchievement("a", 111) },
 				done() { return player.points.gte("e2.5e13") && inChallenge("h", 42) },
-				tooltip: 'Reach e2.5e13 Points while in the "Productionless" Hindrance.',
+				tooltip: "Reach e2.5e13 Points while in the \"Productionless\" Hindrance. Reward: Shell Expansion's nerf to Gear size is now a buff.",
 				image: "images/achs/125.png",
 			},
 			131: {
