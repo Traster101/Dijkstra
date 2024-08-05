@@ -1023,9 +1023,9 @@ document.onkeydown = function(e) {
 		loadQuicksave()
 	} else if (key === 'k') {
 		// quicksave
-		player.quicksaveTime = player.timePlayed
+		player.quicksaveTime = toNumber(player.timePlayed)
 		save('quicksave')
-		loadQuicksave()
+		// loadQuicksave()
 	}
 }
 
