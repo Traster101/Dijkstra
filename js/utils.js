@@ -108,6 +108,7 @@ function setLocalStorage() {
 
 function save(name=allSaves.set) {
 	player.prevQuicksaveTime = player.timePlayed - player.quicksaveTime
+	player.quicksaveTime = player.timePlayed
 	allSaves[name] = player;
 	setLocalStorage();
 }
@@ -1020,13 +1021,11 @@ document.onkeydown = function(e) {
 		return
 	}
 	if (key === 'l') {
-		// quickload
+		// quickload - literally just a refresh
 		if (!player.quicksaveTime) return
-		load()
 		window.location.reload();
 	} else if (key === 'k') {
 		// quicksave
-		player.quicksaveTime = player.timePlayed
 		save()
 	}
 }
