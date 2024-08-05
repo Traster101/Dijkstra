@@ -182,7 +182,7 @@
 						<br>Time since start: {{ formatStopwatch(player.timePlayed ) }}<br>
 					</span>
 					<span v-if="player.quicksaveTime">
-						Time since quicksave: {{ formatStopwatch(player.timePlayed - player.quicksaveTime) }}<br>
+						Time since quicksave: {{ formatStopwatch(player.timePlayed - player.quicksaveTime) }} ({{ formatStopwatch(player.quicksaveTime) }})<br>
 					</span>
 					<span v-if="player.prevQuicksaveTime">
 						Previous quicksave time: {{ formatStopwatch(player.prevQuicksaveTime )}}<br>
