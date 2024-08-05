@@ -184,7 +184,7 @@
 						Time since quicksave: {{ formatStopwatch(player.timePlayed - player.quicksaveTime) }}<br>
 					</span>
 					<span v-if="player.prevQuicksaveTime">
-						Previous quicksave time: {{ formatStopwatch(player.quicksavePrev )}}<br>
+						Previous quicksave time: {{ formatStopwatch(player.prevQuicksaveTime )}}<br>
 					</span>
 					<span v-if="!player.keepGoing" class="overlayThing">
 						<br><span v-if="modInfo.specialEndgameText">{{modInfo.specialEndgameText}}</span><span v-if="!modInfo.specialEndgameText">Reach {{formatWhole(modInfo.endgame)+" "+modInfo.pointsName}} to beat the game!</span><br>
