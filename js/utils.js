@@ -1020,7 +1020,7 @@ document.onkeydown = function(e) {
 	if (key === 'l') {
 		// quickload
 		if (!player.quicksaveTime) return
-		loadSave('quicksave')
+		loadQuicksave('quicksave')
 	} else if (key === 'k') {
 		// quicksave
 		player.quicksaveTime = player.timePlayed
