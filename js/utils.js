@@ -1001,7 +1001,24 @@ document.onkeydown = function(e) {
 	if(hotkeys[key]){
 		if (player[hotkeys[key].layer].unlocked)
 			hotkeys[key].onPress()
+		return
 	}
+	if (key === 'l') {
+		// quickload
+		if (!player.quicksaveTime) return
+		loadSave('quicksave')
+	} else if (key === 'k') {
+		// quicksave
+		player.quicksaveTime = player.timePlayed
+		save('quicksave')
+	}
+}
+
+function loadQuicksave(name) {
+	allSaves.set = name;
+	allSaves.quicksave.prevQuicksaveTime = player.timePlayed - player.quicksaveTime
+	setLocalStorage();
+	window.location.reload();
 }
 
 document.onkeyup = function(e) {

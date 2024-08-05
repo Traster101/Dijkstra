@@ -34,7 +34,7 @@
 				<h3>Congratulations! You have reached the end and beaten this game, but for now...</h3><br>
 				<h3>Please check the Discord to see if there are new content updates!</h3><br><br>
 				<div v-if="!player.timePlayedReset">It took you {{formatTime(player.timePlayed)}} to beat the game.</div>
-				<div v-if="player.timePlayedReset">Make sure that you record the time in your stream or else your speedrun won't count!</div>
+				<div v-else>Make sure that you record the time in your stream or else your speedrun won't count!</div>
 				<br>
 				<button class="longUpg can" onclick="hardReset(true)">Play Again</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="longUpg can" onclick="keepGoing()">Keep Going</button>
 				<br><br><br>
@@ -176,6 +176,15 @@
 					</span>
 					<span v-if="player.offTime !== undefined && player.offTime !== null"  class="overlayThing">
 						<br>Offline Time: {{formatTime(player.offTime?player.offTime.remain:0)}}<br>
+					</span>
+					<span>
+						<br>Time since start: {{ formatTime(player.timePlayed ) }}<br>
+					</span>
+					<span v-if="player.quicksaveTime">
+						Time since quicksave: {{ formatTime(player.timePlayed - player.quicksaveTime) }}<br>
+					</span>
+					<span v-if="player.prevQuicksaveTime">
+						Previous quicksave time: {{ formatTime(player.quicksavePrev )}}<br>
 					</span>
 					<span v-if="!player.keepGoing" class="overlayThing">
 						<br><span v-if="modInfo.specialEndgameText">{{modInfo.specialEndgameText}}</span><span v-if="!modInfo.specialEndgameText">Reach {{formatWhole(modInfo.endgame)+" "+modInfo.pointsName}} to beat the game!</span><br>

@@ -158,6 +158,8 @@ var systemComponents = {
         <br><br>
         Time Played: {{ formatTime(player.timePlayed) }}<br><br>
         <h3>Hotkeys</h3><br>
+		<span><br>k to quicksave</span>
+		<span><br>l to quickload</span>
         <span v-for="key in hotkeys" v-if="player[key.layer].unlocked"><br>{{key.description}}</span></div>
     `
     },
