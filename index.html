@@ -79,6 +79,8 @@
 				Time Played: {{ formatTime(player.timePlayed) }}<br>
 				<span v-for="layer in LAYERS"><span v-if="player[layer].first!==undefined && player[layer].unlocked">First {{layer}} reset: {{formatTime(player[layer].first)}}<br></span></span><br>
 				<h3>Hotkeys</h3><br>
+				<span><br>k to quicksave</span>
+				<span><br>l to quickload</span>
 				<span v-for="key in hotkeys" v-if="player[key.layer].unlocked"><br>{{key.description}}</span>
 				<br>Press - to Show Formulas
 			</div>
