@@ -1020,16 +1020,17 @@ document.onkeydown = function(e) {
 	if (key === 'l') {
 		// quickload
 		if (!player.quicksaveTime) return
-		loadQuicksave('quicksave')
+		loadQuicksave()
 	} else if (key === 'k') {
 		// quicksave
 		player.quicksaveTime = player.timePlayed
 		save('quicksave')
+		loadQuicksave()
 	}
 }
 
-function loadQuicksave(name) {
-	allSaves.set = name;
+function loadQuicksave() {
+	allSaves.set = 'quicksave';
 	allSaves.quicksave.prevQuicksaveTime = player.timePlayed - player.quicksaveTime
 	setLocalStorage();
 	window.location.reload();
