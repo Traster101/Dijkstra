@@ -108,7 +108,7 @@ function setLocalStorage() {
 
 function save(name=allSaves.set) {
 	player.prevQuicksaveTime = player.timePlayed - player.quicksaveTime
-	allSaves[name] = JSON.parse(JSON.stringify(player));
+	allSaves[name] = player;
 	setLocalStorage();
 }
 
@@ -1022,19 +1022,13 @@ document.onkeydown = function(e) {
 	if (key === 'l') {
 		// quickload
 		if (!player.quicksaveTime) return
-		loadQuicksave()
+		load()
 	} else if (key === 'k') {
 		// quicksave
 		player.quicksaveTime = player.timePlayed
 		save()
 		load()
 	}
-}
-
-function loadQuicksave() {
-	allSaves[allSaves.set].prevQuicksaveTime = player.timePlayed - player.quicksaveTime
-	setLocalStorage();
-	window.location.reload();
 }
 
 document.onkeyup = function(e) {
