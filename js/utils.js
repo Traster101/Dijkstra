@@ -1023,6 +1023,7 @@ document.onkeydown = function(e) {
 		// quickload
 		if (!player.quicksaveTime) return
 		load()
+		window.location.reload();
 	} else if (key === 'k') {
 		// quicksave
 		player.quicksaveTime = player.timePlayed
