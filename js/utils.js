@@ -76,6 +76,20 @@ function formatTime(s) {
 	else return formatWhole(s.div(31536000).floor())+"y"
 }
 
+function formatStopwatch(s) {
+	const seconds = (s % 60).toString();
+	if (seconds.includes('.')) seconds = seconds.substring(0, secStr.indexOf('.') + 4)
+	s = Math.floor(s / 60)
+	if (s < 1) return `${seconds}s`
+	const minutes = s % 60
+	s = Math.floor(s / 60)
+	if (s < 1) return `${minutes}m${seconds}s`
+	const hours = s % 24
+	s = Math.floor(s / 24)
+	if (s < 1) return `${hours}h${minutes}m${seconds}s`
+	return `${s}d${hours}h${minutes}m${seconds}s`
+}
+
 function toPlaces(x, precision, maxAccepted) {
 	x = new Decimal(x)
 	let result = x.toStringWithDecimalPlaces(precision)

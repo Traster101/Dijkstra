@@ -1,5 +1,5 @@
 let modInfo = {
-	name: "Prestige Tree Rewritten",
+	name: "Dijkstra Speedrun Tool for PTR",
 	id: "ptr",
 	author: "Jacorb",
 	pointsName: "points",
@@ -15,7 +15,7 @@ let modInfo = {
 // Set your version in num and name
 let VERSION = {
 	num: "1.3",
-	patch: 1,
+	patch: 2,
 	name: "The Quicksave Update",
 }
 

@@ -178,13 +178,13 @@
 						<br>Offline Time: {{formatTime(player.offTime?player.offTime.remain:0)}}<br>
 					</span>
 					<span>
-						<br>Time since start: {{ formatTime(player.timePlayed ) }}<br>
+						<br>Time since start: {{ formatStopwatch(player.timePlayed ) }}<br>
 					</span>
 					<span v-if="player.quicksaveTime">
-						Time since quicksave: {{ formatTime(player.timePlayed - player.quicksaveTime) }}<br>
+						Time since quicksave: {{ formatStopwatch(player.timePlayed - player.quicksaveTime) }}<br>
 					</span>
 					<span v-if="player.prevQuicksaveTime">
-						Previous quicksave time: {{ formatTime(player.quicksavePrev )}}<br>
+						Previous quicksave time: {{ formatStopwatch(player.quicksavePrev )}}<br>
 					</span>
 					<span v-if="!player.keepGoing" class="overlayThing">
 						<br><span v-if="modInfo.specialEndgameText">{{modInfo.specialEndgameText}}</span><span v-if="!modInfo.specialEndgameText">Reach {{formatWhole(modInfo.endgame)+" "+modInfo.pointsName}} to beat the game!</span><br>
