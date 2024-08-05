@@ -1023,6 +1023,7 @@ document.onkeydown = function(e) {
 		// quickload - literally just a refresh
 		if (!player.quicksaveTime) return
 		allSaves[allSaves.set].prevQuicksaveTime = player.timePlayed - player.quicksaveTime
+		setLocalStorage()
 		window.location.reload();
 	} else if (key === 'k') {
 		// quicksave
