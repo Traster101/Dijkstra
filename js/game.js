@@ -185,8 +185,8 @@ var prevOnReset
 function doReset(layer, force=false) {
 	console.log('doReset')
 	let row = tmp[layer].row
-	for (const val of player) {
-		if (val.row != undefined && val.row <= row) val.time = new Decimal(0)
+	for (const key in player) {
+		if (player[key] != undefined && player[key].row != undefined && player[key].row <= row) player[key].time = new Decimal(0)
 	}
 	if (!force) {
 		if (tmp[layer].baseAmount.lt(tmp[layer].requires)) return;
