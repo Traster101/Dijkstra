@@ -3593,6 +3593,7 @@ addLayer("o", {
         doReset(resettingLayer){ 
 			let keep = [];
 			player.q.energy = new Decimal(0);
+			player.q.time = new Decimal(0);
 			if (layers[resettingLayer].row > this.row) layerDataReset(this.layer, keep)
         },
         layerShown(){return (player.sb.unlocked&&player.h.unlocked)||player.m.unlocked||player.ba.unlocked },
