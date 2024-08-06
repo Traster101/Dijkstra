@@ -1,5 +1,3 @@
-// Delete this if you don't want a help tab :)
-
 let help_data = {
 	dijkstra: {
 		id: "dijkstra",
@@ -9,7 +7,7 @@ let help_data = {
 		<br><h3>Tools this mod adds</h3>
 		<br><b>Gain/Sec:</b> (most) layers now display the average gain/sec since their current reset, as well as the best average gain/sec of their current reset. In addition, Certain secondary resources also display gain/sec info on their tab. In the future, this will also include log(gain)/sec.
 		<br>
-		<br><b>QuickSave: </b>Pressing <em>K</em> will perform a quicksave and pressing <em>L</em> will perform a quickload to/from a save called quicksave. Time since the last quicksave is tracked, as well as the time spent in the previous quicksave.
+		<br><b>QuickSave: </b>Pressing <em>K</em> will perform a quicksave and pressing <em>L</em> will perform a quickload. Time since the last quicksave is tracked, as well as the time spent in the previous quicksave.
 		<br>
 		<br><b>Layer Quicksave: </b>Every time you unlock a layer, your save will automatically be written to {layer.id}quicksave (IE pquicksave for prestige). Quicksaves will not be overwritten by other quicksaves unless the time played is lower, so they will always keep their fastest time. Loading a quicksave will preserve the original and create a new save called "(name) In Progress". Note that trying a different layer order might screw up your quicksaves.
 		<br>

@@ -208,9 +208,10 @@ function doReset(layer, force=false) {
 			needCanvasUpdate = true;
 
 			const safeSaves = superSafeLoad();
-			const thisQuicksave = safeSaves[layer + 'quicksave']
+			const quicksaveName = layer + 'quicksave'
+			const thisQuicksave = safeSaves[quicksaveName]
 			if (thisQuicksave == undefined || thisQuicksave.timePlayed == undefined || thisQuicksave.timePlayed > player.timePlayed) {
-				allSaves[layer + 'quicksave'] = thisQuicksave
+				safeSaves[quicksaveName] = player
 				superSafeSave(safeSaves)
 			}
 
