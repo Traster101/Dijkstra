@@ -282,6 +282,11 @@ function fixData(defaultData, newData) {
 
 function loadSave(name) {
 	allSaves.set = name;
+	const storedSaves = superSafeLoad()
+	for (const key in allSaves) {
+		if (allSaves[key] === true)
+			allSaves[key] = storedSaves[key]
+	}
 	setLocalStorage();
 	window.location.reload();
 }
