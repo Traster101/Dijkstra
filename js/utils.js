@@ -1114,7 +1114,7 @@ function isFunction(obj) {
 
 // Sets player[layer][{key}PerSecond]
 function setPerSecond(loc, key, shouldTrackMax = true) {
-	loc[key + 'PerSecond'] = loc[key].div(loc.time)
+	loc[key + 'PerSecond'] = loc[key].div(loc.timePlayed)
 	if (shouldTrackMax) trackMax(loc, key + 'PerSecond')
 }
 // Sets and gets player[layer][{key}PerSecond]
@@ -1129,6 +1129,6 @@ function trackMax(valueLoc, key) {
 document.title = modInfo.name
 
 function setPerSecondTemp(tmpLoc, playerLoc, key, shouldTrackMax = true) {
-	tmpLoc[key + 'PerSecond'] = tmpLoc[key].div(playerLoc.time)
+	tmpLoc[key + 'PerSecond'] = tmpLoc[key].div(playerLoc.timePlayed)
 	if (shouldTrackMax) trackMax(tmpLoc, key + 'PerSecond')
 }

@@ -2666,6 +2666,7 @@ addLayer("h", {
 			let keep = [];
 			player.q.energy = new Decimal(0);
 			player.h.chall31bought = 0;
+			player.q.time = new Decimal(0);
 			if (hasMilestone("m", 1)) keep.push("challenges")
 			if (layers[resettingLayer].row > this.row) {
 				layerDataReset(this.layer, keep)
@@ -2972,6 +2973,7 @@ addLayer("q", {
         doReset(resettingLayer){ 
 			let keep = [];
 			player.q.energy = new Decimal(0);
+			player.q.time = new Decimal(0);
 			player.q.energyPerSecondMax = new Decimal(0)
 			if (hasMilestone("ba", 0)) keep.push("upgrades");
 			if (layers[resettingLayer].row > this.row) layerDataReset(this.layer, keep)
@@ -8543,6 +8545,7 @@ addLayer("ai", {
 			let keep = [];
 			if (layers[resettingLayer].row == this.row) {
 				player.ai.consc = new Decimal(0);
+				player.ai.time = new Decimal(0);
 			}
 			if (layers[resettingLayer].row > this.row) layerDataReset(this.layer, keep)
         },

@@ -128,7 +128,7 @@ function rowReset(row, layer) {
 		if(layers[lr].doReset) {
 
 			player[lr].activeChallenge = null // Exit challenges on any row reset on an equal or higher row
-			layers[lr].time = new Decimal(0)
+			layers[lr].timePlayed = new Decimal(0)
 			layers[lr].doReset(layer)
 		}
 		else
@@ -183,10 +183,9 @@ function generatePoints(layer, diff) {
 var prevOnReset
 
 function doReset(layer, force=false) {
-	console.log('doReset')
 	let row = tmp[layer].row
 	for (const key in player) {
-		if (player[key] != undefined && player[key].row != undefined && player[key].row <= row) player[key].time = new Decimal(0)
+		if (player[key] != undefined && player[key].row != undefined && player[key].row <= row) player[key].timeSinceReset = new Decimal(0)
 	}
 	if (!force) {
 		if (tmp[layer].baseAmount.lt(tmp[layer].requires)) return;
@@ -354,12 +353,12 @@ function gameLoop(diff) {
 	for (x = 0; x <= maxRow; x++){
 		for (item in TREE_LAYERS[x]) {
 			let layer = TREE_LAYERS[x][item]
-			if (player[layer].time == undefined) player[layer].time = new Decimal(0)
+			if (player[layer].timePlayed == undefined) player[layer].timePlayed = new Decimal(0)
 			if (!player[layer].unlocked) player[layer].first += diff;
 			if (!unl(layer)) continue;
 			let speed = (x<6&&layer!="en"&&layer!="ne"&&layer!="id"&&layer!="r")?tmp.row1to6spd:new Decimal(1)
 			if (tmp[layer].passiveGeneration) generatePoints(layer, speed.times(diff*tmp[layer].passiveGeneration));
-			player[layer].time = speed.times(diff).add(player[layer].time)
+			player[layer].timePlayed = speed.times(diff).add(player[layer].timePlayed)
 			if (tmp[layer].resetGain) {
 				setPerSecondTemp(tmp[layer], player[layer], 'resetGain')
 			}
