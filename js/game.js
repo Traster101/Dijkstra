@@ -219,7 +219,6 @@ function doReset(layer, force=false) {
 			if (thisQuicksave == undefined || thisQuicksave.timePlayed == undefined || thisQuicksave.timePlayed > player.timePlayed) {
 				safeSaves[quicksaveName] = player
 				superSafeSave(safeSaves)
-				allSaves[quicksaveName] = true
 			}
 		}
 	
