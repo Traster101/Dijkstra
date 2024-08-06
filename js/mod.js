@@ -15,7 +15,7 @@ let modInfo = {
 // Set your version in num and name
 let VERSION = {
 	num: "0.2",
-	patch: 4,
+	patch: 5,
 	name: "The Quicksave Update",
 }
 

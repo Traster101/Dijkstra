@@ -218,6 +218,7 @@ function doReset(layer, force=false) {
 			const thisQuicksave = safeSaves[quicksaveName]
 			if (thisQuicksave == undefined || thisQuicksave.timePlayed == undefined || thisQuicksave.timePlayed > player.timePlayed) {
 				safeSaves[quicksaveName] = player
+				allSaves[quicksaveName] = JSON.parse(JSON.stringify(safeSaves[quicksaveName]))
 				superSafeSave(safeSaves)
 			}
 		}
