@@ -107,8 +107,10 @@ function setLocalStorage() {
 }
 
 function save(name=allSaves.set) {
-	player.quicksaveTime = player.timePlayed
-	player.prevQuicksaveTime = undefined
+	if (name === allSaves.set) {
+		player.quicksaveTime = player.timePlayed
+		player.prevQuicksaveTime = undefined
+	}
 	allSaves[name] = player;
 	setLocalStorage();
 }

@@ -108,7 +108,7 @@
 					<table>
 						<tr>
 							<td><button class="opt" onclick="save()">Save</button></td>
-							<td><button class="opt">Autosave: ALWAYS OFF</button></td>
+							<td><button class="opt" onclick="toggleOpt('autosave')">Autosave (breaks quicksave): {{player.autosave?"ON":"OFF"}}</button></td>
 							<td><button class="opt" onclick="hardReset()">HARD RESET</button></td>
 						</tr>
 						<tr>
@@ -182,10 +182,10 @@
 						<br>Time since start: {{ formatStopwatch(player.timePlayed ) }}<br>
 					</span>
 					<span v-if="player.quicksaveTime">
-						Time since quicksave: {{ formatStopwatch(player.timePlayed - player.quicksaveTime) }} ({{ formatStopwatch(player.quicksaveTime) }})<br>
+						Time since last save: {{ formatStopwatch(player.timePlayed - player.quicksaveTime) }} ({{ formatStopwatch(player.quicksaveTime) }})<br>
 					</span>
 					<span v-if="player.prevQuicksaveTime">
-						Previous quicksave time: {{ formatStopwatch(player.prevQuicksaveTime )}} ({{formatStopwatch(player.quicksaveTime + player.prevQuicksaveTime)}})<br>
+						Previous save time: {{ formatStopwatch(player.prevQuicksaveTime )}} ({{formatStopwatch(player.quicksaveTime + player.prevQuicksaveTime)}})<br>
 					</span>
 					<span v-if="!player.keepGoing" class="overlayThing">
 						<br><span v-if="modInfo.specialEndgameText">{{modInfo.specialEndgameText}}</span><span v-if="!modInfo.specialEndgameText">Reach {{formatWhole(modInfo.endgame)+" "+modInfo.pointsName}} to beat the game!</span><br>
