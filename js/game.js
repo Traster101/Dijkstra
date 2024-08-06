@@ -183,7 +183,11 @@ function generatePoints(layer, diff) {
 var prevOnReset
 
 function doReset(layer, force=false) {
+	console.log('doReset')
 	let row = tmp[layer].row
+	for (const key in player) {
+		if (player[key].row != undefined && player[key].row <= row) player[key].time = new Decimal(0)
+	}
 	if (!force) {
 		if (tmp[layer].baseAmount.lt(tmp[layer].requires)) return;
 		if (!canReset(layer)) return;
@@ -227,9 +231,6 @@ function doReset(layer, force=false) {
 	}
 
 	if (tmp[layer].resetsNothing) return
-
-	player[layer].time = new Decimal(0)
-
 
 	for (layerResetting in layers) {
 		if (row >= layers[layerResetting].row && (!force || layerResetting != layer)) completeChallenge(layerResetting)
