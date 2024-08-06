@@ -1022,9 +1022,9 @@ document.onkeydown = function(e) {
 		// quickload - literally just a refresh
 		if (!player.quicksaveTime) return
 		
-		const saves = JSON.parse(btoa(localStorage.getItem(mod.id)))
+		const saves = JSON.parse(btoa(localStorage.getItem(modInfo.id)))
 		saves[allSaves.set].prevQuicksaveTime = player.timePlayed - player.quicksaveTime
-		localStorage.setItem(mod.id, atob(JSON.stringify(saves)))
+		localStorage.setItem(modInfo.id, atob(JSON.stringify(saves)))
 		window.location.reload();
 	} else if (key === 'k') {
 		// quicksave
