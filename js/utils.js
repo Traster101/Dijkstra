@@ -1025,14 +1025,22 @@ document.onkeydown = function(e) {
 		// quickload - literally just a refresh
 		if (!player.quicksaveTime) return
 		
-		const saves = JSON.parse(atob(localStorage.getItem(modInfo.id)))
+		const saves = superSafeLoad()
 		saves[allSaves.set].prevQuicksaveTime = player.timePlayed - player.quicksaveTime
-		localStorage.setItem(modInfo.id, btoa(JSON.stringify(saves)))
+		superSafeSave(saves)
 		window.location.reload();
 	} else if (key === 'k') {
 		// quicksave
 		save()
 	}
+}
+
+function superSafeLoad() {
+	return JSON.parse(atob(localStorage.getItem(modInfo.id)))
+}
+
+function superSafeSave(saves) {
+	localStorage.setItem(modInfo.id, btoa(JSON.stringify(saves)))
 }
 
 document.onkeyup = function(e) {

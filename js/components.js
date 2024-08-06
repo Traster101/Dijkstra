@@ -461,7 +461,7 @@ function loadVue() {
 			<div class="popupBlocker" onclick="player.saveMenuOpen = false;"></div>
 			<div class="popup-content"><br>
 				<div class="upgRow" style="width: 100%;" v-for="(data, name) in allSaves" v-if="name!='set' && data!==undefined">
-					<div v-bind:class="{ activeSave: (allSaves.set==name), widthLock: true }">{{name}}</div>
+					<div v-bind:class="{ activeSave: (allSaves.set==name), widthLock: true }">{{name}} {{formatStopwatch(allSaves[allSaves.set].timePlayed)}}</div>
 					<button v-on:click="save(); loadSave(name);" class="popupBtn can">Load</button>
 					<button v-on:click="renameSave(name)" class="popupBtn can">Rename</button>
 					<button v-on:click="deleteSave(name)" class="popupBtn can">Delete</button>
