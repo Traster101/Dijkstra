@@ -382,6 +382,11 @@ function load() {
 	} else {
 		let data = JSON.parse(atob(get));
 		if (data.set !== undefined) {
+			if (data.set.endsWith('quicksave')) {
+				const newSet = data.set + ' In Progress'
+				data[newSet] = JSON.parse(JSON.stringify(data[data.set])) // Poor man's deepcopy
+				data.set = newSet
+			}
 			player = Object.assign(getStartPlayer(), data[data.set]);
 			allSaves = data;
 		} else {

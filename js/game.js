@@ -208,8 +208,9 @@ function doReset(layer, force=false) {
 			needCanvasUpdate = true;
 
 			const safeSaves = superSafeLoad();
-			safeSaves[layer + 'quicksave'] = player
-			superSafeSave(safeSaves)
+			const thisQuicksave = safeSaves[layer + 'quicksave']
+			if (thisQuicksave.timePlayed == undefined || thisQuicksave.timePlayed > player.timePlayed)
+				superSafeSave(safeSaves)
 
 			if (tmp[layer].increaseUnlockOrder){
 				lrs = tmp[layer].increaseUnlockOrder
