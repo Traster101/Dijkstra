@@ -209,7 +209,7 @@ function doReset(layer, force=false) {
 
 			const safeSaves = superSafeLoad();
 			const thisQuicksave = safeSaves[layer + 'quicksave']
-			if (thisQuicksave.timePlayed == undefined || thisQuicksave.timePlayed > player.timePlayed) {
+			if (thisQuicksave == undefined || thisQuicksave.timePlayed == undefined || thisQuicksave.timePlayed > player.timePlayed) {
 				allSaves[layer + 'quicksave'] = thisQuicksave
 				superSafeSave(safeSaves)
 			}
