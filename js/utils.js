@@ -1027,7 +1027,7 @@ document.onkeydown = function(e) {
 		return
 	}
 	if (key === 'l') {
-		// quickload - literally just a refresh
+		// quickload
 		if (!player.quicksaveTime) return
 		
 		const saves = superSafeLoad()
