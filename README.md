@@ -1,7 +1,12 @@
-# The-Modding-Tree
+# Dijkstra - Speedrun/Routing tools for PTR
 
-A modified version of The Prestige Tree that is much easier to mod. It still requires programming knowledge, but it's mostly pretty easy things and copy/pasting.
+This is a modified version of The Prestige Tree that is much easier to route and speedrun without changing the base functionality of PTR. This exists primarily for me to use personally, but so long as it's on GitHub it may as well be useful.
 
-[Look here for a tutorial on getting started with modding with TMT](docs/getting-started.md)
+Adds various features, including the following:
+- Hotkey quicksaves with time tracking - k to save, l to load
+- Automatic best-time saves after each row unlock
+- More precise time tracking
+- Average gain/sec indicators to build optimal routes
+- Anything else I forgot to put here
 
-You can look in the [documentation](docs/!general-info.md) for more information on how it all works, or look at the code in layers.js to see what it all looks like.
+## Check the new help tab entry to view (mostly so far) up-to-date notes on all features and changes

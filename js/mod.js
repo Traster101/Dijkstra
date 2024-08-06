@@ -1,7 +1,7 @@
 let modInfo = {
 	name: "Dijkstra Speedrun Tools for PTR",
 	id: "dijkstra",
-	author: "Jacorb",
+	author: "Traster/Livid Experience",
 	pointsName: "points",
 	discordName: "PT Rewritten Server",
 	discordLink: "https://discord.gg/TFCHJJT",
