@@ -16,7 +16,7 @@ let modInfo = {
 let VERSION = {
 	num: "0.2.1",
 	patch: 1,
-	name: "Time On Time Update",
+	name: "On Time Update",
 }
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
