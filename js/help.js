@@ -7,17 +7,17 @@ let help_data = {
 		text: `This is a collection of tools designed for speedrunners to facilitate routing testing of runs. It intends to make no mechanical changes to PTR's base game. This is <b>NOT</b> a replacement for PTR for the purpose of speedrunning, and speedruns here <b>ARE NOT</b> valid PTR speedruns.
 		<br>
 		<br><h3>Tools this mod adds</h3>
-		<br><b>Gain/Sec:</b> (most) nodes now display the average gain/sec since their current reset, as well as the best average gain/sec of their current reset. In addition, Certain secondary resources also display gain/sec info on their tab. In the future, this will also include log(gain)/sec.
+		<br><b>Gain/Sec:</b> (most) layers now display the average gain/sec since their current reset, as well as the best average gain/sec of their current reset. In addition, Certain secondary resources also display gain/sec info on their tab. In the future, this will also include log(gain)/sec.
 		<br>
 		<br><b>QuickSave: </b>Pressing <em>K</em> will perform a quicksave and pressing <em>L</em> will perform a quickload to/from a save called quicksave. Time since the last quicksave is tracked, as well as the time spent in the previous quicksave.
 		<br>
-		<br><b>Layer Quicksave: </b>Every time you unlock a layer, your save will automatically be written to {layer.id}quicksave, IE pquicksave for prestige. Quicksaves will not be overwritten by other quicksaves unless the time played is lower, so they will always keep their fastest time. Loading a quicksave will preserve the original and create a new save called "(name) In Progress". Note that trying a different layer order might screw up your quicksaves.
+		<br><b>Layer Quicksave: </b>Every time you unlock a layer, your save will automatically be written to {layer.id}quicksave (IE pquicksave for prestige). Quicksaves will not be overwritten by other quicksaves unless the time played is lower, so they will always keep their fastest time. Loading a quicksave will preserve the original and create a new save called "(name) In Progress". Note that trying a different layer order might screw up your quicksaves.
 		<br>
 		<br><h3>Other changes/notes</h3>
-		<br>Offline Mode and Autosave are off by default, and offline mode cannot be turned on.
+		<br>Offline Mode and Autosave are off by default, and offline mode cannot be turned on because I have a personal vendetta against it.
 		<br>If you didn't notice the timer somehow, you do now.
-		<br>The achievement Baseless Property has the correct reward note on it (PTR's note incorrectly claims Haunted Forever gives the reward Baseless Property actually does).
-		<br>Nodes in the info tab show the "actual" time they were completed, in addition to what the game thinks. This is because the game's time displays the time since the page was loaded, but the players playtime is measured starting at the first prestige. In effect, the "real" time is the game's prestige time minus the game's row time. This is also formatted more precisely.
+		<br>The achievement Baseless Property has the correct reward note on it (PTR's note incorrectly claims Haunted Forever gives the reward Baseless Property actually does. This confuses me every single time I play so I have it in writing).
+		<br>Layers in the info tab show the "actual" time they were completed, in addition to what the game thinks. This is because the game's time displays the time since the page was loaded, but the players playtime is measured starting at the first prestige. In effect, the "real" time is the game's prestige time minus the game's row time. This is also formatted more precisely.
 		<br>Saves note time played in the "all saves" menu
 		<br>Creating a save whose name ends in "quicksave" may cause some weird effects. Probably don't do that.`,
 		unlocked: () => true
