@@ -279,7 +279,6 @@ function fixData(defaultData, newData) {
 
 function loadSave(name) {
 	allSaves.set = name;
-	allSaves[allSaves.set].prevQuicksaveTime = player.timePlayed - player.quicksaveTime
 	setLocalStorage();
 	window.location.reload();
 }
@@ -1022,8 +1021,10 @@ document.onkeydown = function(e) {
 	if (key === 'l') {
 		// quickload - literally just a refresh
 		if (!player.quicksaveTime) return
-		allSaves[allSaves.set].prevQuicksaveTime = player.timePlayed - player.quicksaveTime
-		setLocalStorage()
+		
+		const saves = JSON.parse(btoa(localStorage.getItem(mod.id)))
+		saves[allSaves.set].prevQuicksaveTime = player.timePlayed - player.quicksaveTime
+		localStorage.setItem(mod.id, atob(JSON.stringify(saves)))
 		window.location.reload();
 	} else if (key === 'k') {
 		// quicksave
