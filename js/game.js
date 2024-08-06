@@ -207,18 +207,18 @@ function doReset(layer, force=false) {
 			player[layer].unlocked = true;
 			needCanvasUpdate = true;
 
+			if (tmp[layer].increaseUnlockOrder){
+				lrs = tmp[layer].increaseUnlockOrder
+				for (lr in lrs)
+					if (!player[lrs[lr]].unlocked) player[lrs[lr]].unlockOrder = (player[lrs[lr]].unlockOrder||0)+1
+			}
+
 			const safeSaves = superSafeLoad();
 			const quicksaveName = layer + 'quicksave'
 			const thisQuicksave = safeSaves[quicksaveName]
 			if (thisQuicksave == undefined || thisQuicksave.timePlayed == undefined || thisQuicksave.timePlayed > player.timePlayed) {
 				safeSaves[quicksaveName] = player
 				superSafeSave(safeSaves)
-			}
-
-			if (tmp[layer].increaseUnlockOrder){
-				lrs = tmp[layer].increaseUnlockOrder
-				for (lr in lrs)
-					if (!player[lrs[lr]].unlocked) player[lrs[lr]].unlockOrder = (player[lrs[lr]].unlockOrder||0)+1
 			}
 		}
 	

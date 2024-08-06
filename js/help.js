@@ -9,7 +9,10 @@ let help_data = {
 		<br>
 		<br><b>QuickSave: </b>Pressing <em>K</em> will perform a quicksave and pressing <em>L</em> will perform a quickload. Time since the last quicksave is tracked, as well as the time spent in the previous quicksave.
 		<br>
-		<br><b>Layer Quicksave: </b>Every time you unlock a layer, your save will automatically be written to {layer.id}quicksave (IE pquicksave for prestige). Quicksaves will not be overwritten by other quicksaves unless the time played is lower, so they will always keep their fastest time. Loading a quicksave will preserve the original and create a new save called "(name) In Progress". Note that trying a different layer order might screw up your quicksaves.
+		<br><b>Layer Quicksave: </b>Every time you unlock a layer, your save will automatically be written to {layer.id}quicksave (IE pquicksave for prestige). 
+		Quicksaves will not be overwritten by other quicksaves unless the time played is lower, so they will always keep their fastest time. 
+		Loading a quicksave will preserve the original and create a new save called "(name) In Progress". Note that trying a different layer order 
+		might screw up your quicksaves. If layer quicksaves don't appear in "All Saves", you may need to refresh your page.
 		<br>
 		<br><h3>Other changes/notes</h3>
 		<br>Offline Mode and Autosave are off by default, and offline mode cannot be turned on because I have a personal vendetta against it.
