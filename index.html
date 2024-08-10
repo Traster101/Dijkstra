@@ -77,7 +77,7 @@
 				<a class="link pat" href="http://patreon.com/Jacorb90" target="_blank" v-bind:style="{'font-size': '18px'}">Donate</a><br>
 				<br><br>
 				Time Played: {{ formatTime(player.timePlayed) }}<br>
-				<span v-for="layer in LAYERS"><span v-if="player[layer].first!==undefined && player[layer].unlocked">First {{layer}} reset: {{formatTime(player[layer].first)}} (really {{ formatStopwatch(player[layer].first - player.p.first) }})<br></span></span><br>
+				<span v-for="layer in LAYERS"><span v-if="player[layer].first!==undefined && player[layer].unlocked">First {{layer}} reset: {{ formatStopwatch(player[layer].first - player.p.first) }}<br></span></span><br>
 				<h3>Hotkeys</h3><br>
 				<span><br>Press k to Quicksave</span>
 				<span><br>Press l to Quickload</span>
@@ -205,7 +205,7 @@
 
 
 			<div v-if="!(gameEnded && !player.keepGoing)" id="treeTab" style="z-index: 0" onscroll="resizeCanvas()" v-bind:class="{ fullWidth: (player.tab == 'none' || player.navTab == 'none'), col: (player.tab !== 'none' && player.navTab !== 'none'), left: (player.tab !== 'none' && player.navTab !== 'none')}">
-				<br><br><br><br><br><br>
+				<br><br><br><br><br><br><br><br><br><br>
 				<overlay-head id="fakeHead" style="visibility: hidden;">
 				</overlay-head>
 
