@@ -7033,7 +7033,7 @@ addLayer("ge", {
 		update(diff) {
 			if (!player.ge.unlocked) return;
 			let factor = tmp.ge.gearSpeed
-			setPerSecondTemp(tmp.get, player.ge, 'gearSpeed')
+			setPerSecondTemp(tmp.ge, player.ge, 'gearSpeed')
 			player.ge.energy = player.ge.energy.plus(factor.times(diff).times(tmp.ge.clickables[12].effect));
 			player.ge.toothPower = player.ge.toothPower.plus(factor.times(diff));
 			player.ge.shrinkPower = player.ge.shrinkPower.plus(factor.times(diff));
