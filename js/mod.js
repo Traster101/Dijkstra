@@ -15,7 +15,7 @@ let modInfo = {
 // Set your version in num and name
 let VERSION = {
 	num: "0.2.1",
-	patch: 3,
+	patch: 4,
 	name: "On Time Update",
 }
 
