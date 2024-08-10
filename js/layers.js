@@ -3001,7 +3001,7 @@ addLayer("q", {
 		},
 		update(diff) {
 			player.q.time = player.q.time.plus(diff)
-			if (tmp.q.enGainExp.gte(0)) layer.q.energy = player.q.energy.plus(player.q.time.times(tmp.q.enGainMult).pow(tmp.q.enGainExp).times(diff));
+			if (tmp.q.enGainExp.gte(0)) player.q.energy = player.q.energy.plus(player.q.time.times(tmp.q.enGainMult).pow(tmp.q.enGainExp).times(diff));
 			setPerSecond(player.q, 'energy')
 			if (hasMilestone("ba", 1) && player.q.auto && player.ma.current!="q") layers.q.buyables[11].buyMax();
 		},
