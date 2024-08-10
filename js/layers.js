@@ -2563,6 +2563,7 @@ addLayer("sg", {
 		autoPrestige() { return player.sg.auto && hasMilestone("q", 6) && player.ma.current!="sg" },
 		update(diff) {
 			player.sg.power = player.sg.power.plus(tmp.sg.effect.times(diff));
+			player.sg.time = player.sg.time.plus(diff);
 			setPerSecond(player.sg, 'power')
 		},
 		canBuyMax() { return hasMilestone("q", 7) },
@@ -2999,10 +3000,8 @@ addLayer("q", {
 			return softcap("qe", eff.times(improvementEffect("q", 23)));
 		},
 		update(diff) {
-			player.q.time = player.q.time.add(diff)
-			if (tmp.q.enGainExp.gte(0)) {
-				player.q.energy = player.q.energy.plus(player.q.time.times(tmp.q.enGainMult).pow(tmp.q.enGainExp).times(diff));
-			}
+			player.q.time = player.q.time.plus(diff)
+			if (tmp.q.enGainExp.gte(0)) layer.q.energy = player.q.energy.plus(player.q.time.times(tmp.q.enGainMult).pow(tmp.q.enGainExp).times(diff));
 			setPerSecond(player.q, 'energy')
 			if (hasMilestone("ba", 1) && player.q.auto && player.ma.current!="q") layers.q.buyables[11].buyMax();
 		},
