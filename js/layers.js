@@ -2999,11 +2999,11 @@ addLayer("q", {
 			return softcap("qe", eff.times(improvementEffect("q", 23)));
 		},
 		update(diff) {
+			player.q.time = player.q.time.add(diff)
 			if (tmp.q.enGainExp.gte(0)) {
 				player.q.energy = player.q.energy.plus(player.q.time.times(tmp.q.enGainMult).pow(tmp.q.enGainExp).times(diff));
-				player.q.time = player.q.time.add(diff)
-				setPerSecond(player.q, 'energy')
 			}
+			setPerSecond(player.q, 'energy')
 			if (hasMilestone("ba", 1) && player.q.auto && player.ma.current!="q") layers.q.buyables[11].buyMax();
 		},
 		passiveGeneration() { return (hasMilestone("ba", 0)&&player.ma.current!="q")?1:0 },
