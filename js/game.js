@@ -210,12 +210,10 @@ function doReset(layer, force=false) {
 			player[layer].unlocked = true;
 			needCanvasUpdate = true;
 
-			const safeSaves = superSafeLoad();
 			const quicksaveName = layer + 'quicksave'
-			const thisQuicksave = safeSaves[quicksaveName]
+			const thisQuicksave = allSaves[quicksaveName]
 			if (thisQuicksave == undefined || thisQuicksave.timePlayed == undefined || thisQuicksave.timePlayed > player.timePlayed) {
-				safeSaves[quicksaveName] = player
-				superSafeSave(safeSaves)
+				allSaves[quicksaveName] = clone(player)
 			}
 
 			if (tmp[layer].increaseUnlockOrder){
