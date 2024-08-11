@@ -289,6 +289,9 @@ function loadSave(name) {
 }
 
 function renameSave(name) {
+	if (name.endsWith('quicksave')) {
+		alert("Renaming this file is not allowed since it will break the quicksave")
+	}
 	let newName = prompt("Enter save name: ")
 	newName = newName.replace(saveRegexCode, ""); // Removes all non-alphanumeric characters
 	if (newName=="set") {
@@ -300,6 +303,9 @@ function renameSave(name) {
 	} else if (newName.length>20) {
 		alert("This name is too long!");
 		return;
+	} else if (newName.endsWith('quicksave')) {
+		alert('Name cannot end with quicksave (case sensitive)')
+		return
 	} else {
 		if (name==allSaves.set) save();
 		allSaves[newName] = allSaves[name];
@@ -338,6 +344,9 @@ function newSave() {
 	} else if (newName.length>20) {
 		alert("This name is too long!");
 		return;
+	} else if (newName.endsWith('quicksave')) {
+		alert('Name cannot end with quicksave (case sensitive)')
+		return
 	} else {
 		allSaves[newName] = getStartPlayer();
 		loadSave(newName);
