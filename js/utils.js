@@ -1196,3 +1196,38 @@ function clone(item) {
 
     return result;
 }
+
+
+function backupSaves() {
+	const data = btoa(JSON.stringify(allSaves))
+	const date = new Date()
+	const filename = `Dijkstra_Backup_${date.getMonth()}_${date.getDay()}_${date.getFullYear()}.txt`
+	// Function to download data to a file
+    const file = new Blob([data], {type: "text/plain"});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a"),
+		url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);  
+        }, 0); 
+    }
+}
+
+function importSaves(imported = undefined) {
+	if (imported==undefined) imported = prompt("Paste your saves string here\nWARNING: THIS CANNOT BE UNDONE")
+	try {
+		const tmpSaves = JSON.parse(atob(imported))
+		allSaves = tmpSaves
+		setLocalStorage()
+		window.location.reload()
+	} catch(e) {
+		return;
+	}
+}
