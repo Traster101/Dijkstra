@@ -1232,11 +1232,26 @@ function backupSaves() {
 function importSaves(imported = undefined) {
 	if (imported==undefined) imported = prompt("Paste your saves string here\nWARNING: THIS CANNOT BE UNDONE")
 	try {
-		const tmpSaves = JSON.parse(atob(imported))
-		allSaves = tmpSaves
+		allSaves = JSON.parse(atob(imported))
 		setLocalStorage()
 		window.location.reload()
 	} catch(e) {
 		return;
+	}
+}
+
+
+function getSpeedrunTime(layer) {
+	const fastestSave = allSaves[player[layer].name + '_quicksave']
+	if (!fastestSave) return ''	
+	const realFastestTime = fastestSave.player[layer].first - fastestSave.player.p.first
+	if (!realFastestTime) return ''
+	const thisTime = player[layer].first - player.p.first
+	if (thisTime.gt(realFastestTime)) {
+		return `(+${formatStopwatch(thisTime.sub(realFastestTime))})`
+	} else if (thisTime.eq(realFastestTime)) {
+		return '(Fastest)'
+	} else {
+		return `(-${formatStopwatch(realFastestTime.sub(thisTime))})`
 	}
 }
