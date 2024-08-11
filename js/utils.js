@@ -581,7 +581,6 @@ function adjustGlow(type) {
 const saveSettings = ['Always Overwrite', 'Best Only', 'Never Overwrite']
 
 function cycleOptions(player, key, options) {
-	if (!options.isArray()) return
 	if (!player[key]) {
 		player[key] = options[0]
 		return
