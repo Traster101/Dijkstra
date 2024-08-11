@@ -1243,9 +1243,14 @@ function importSaves(imported = undefined) {
 
 function getSpeedrunTime(layer) {
 	const fastestSave = allSaves[player[layer].name + '_quicksave']
-	if (!fastestSave) return ''	
+	if (!fastestSave) {
+		return '(Best Time Unknown)'
+	}
 	const realFastestTime = fastestSave.player[layer].first - fastestSave.player.p.first
-	if (!realFastestTime) return ''
+	if (!realFastestTime) {
+		return '(Quicksave Time Error)'
+		
+	}
 	const thisTime = player[layer].first - player.p.first
 	if (thisTime.gt(realFastestTime)) {
 		return `(+${formatStopwatch(thisTime.sub(realFastestTime))})`
