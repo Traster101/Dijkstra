@@ -1246,7 +1246,7 @@ function getSpeedrunTime(layer) {
 	if (!fastestSave) {
 		return '(Best Time Unknown)'
 	}
-	const realFastestTime = fastestSave.player[layer].first - fastestSave.player.p.first
+	const realFastestTime = fastestSave[layer].first - fastestSave.p.first
 	if (!realFastestTime) {
 		return '(Quicksave Time Error)'
 		
