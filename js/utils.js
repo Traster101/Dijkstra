@@ -585,8 +585,7 @@ function cycleOptions(player, key, options) {
 		player[key] = options[0]
 		return
 	}
-	const optionIdx = options.findIndex(i => i === player[key])
-	optionIdx = (optionIdx + 1) % options.length
+	const optionIdx = ((options.findIndex(i => i === player[key]) + 1) % options.length)
 	player[key] = options[optionIdx]
 }
 
