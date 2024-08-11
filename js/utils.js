@@ -155,7 +155,7 @@ function startPlayerBase() {
 		subtabs: {},
 		lastSafeTab: (layoutInfo.showTree ? "none" : layoutInfo.startTab),
 		// Dijkstra options
-		layersavesettings: 'Best Only'
+		layerSaveSettings: 'Best Only',
 	}
 }
 
