@@ -1246,12 +1246,12 @@ function getSpeedrunTime(layer) {
 	if (!fastestSave) {
 		return '(Best Time Unknown)'
 	}
-	const realFastestTime = fastestSave[layer].first - fastestSave.p.first
+	const realFastestTime = fastestSave[layer].first.sub(fastestSave.p.first)
 	if (!realFastestTime) {
 		return '(Quicksave Time Error)'
 		
 	}
-	const thisTime = player[layer].first - player.p.first
+	const thisTime = player[layer].first.sub(player.p.first)
 	if (thisTime.gt(realFastestTime)) {
 		return `(+${formatStopwatch(thisTime.sub(realFastestTime))})`
 	} else if (thisTime.eq(realFastestTime)) {
