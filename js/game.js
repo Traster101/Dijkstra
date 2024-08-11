@@ -212,7 +212,8 @@ function doReset(layer, force=false) {
 
 			const quicksaveName = layer + 'quicksave'
 			const thisQuicksave = allSaves[quicksaveName]
-			if (thisQuicksave == undefined || thisQuicksave.timePlayed == undefined || thisQuicksave.timePlayed > player.timePlayed) {
+			if (thisQuicksave == undefined || thisQuicksave.timePlayed == undefined || 
+				(thisQuicksave.timePlayed > player.timePlayed && player.layerSaveSettings === 'Best Time') || player.layerSaveSettings === 'Always Overwrite') {
 				allSaves[quicksaveName] = clone(player)
 			}
 
