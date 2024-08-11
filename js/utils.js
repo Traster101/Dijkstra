@@ -153,7 +153,9 @@ function startPlayerBase() {
 		saveMenuOpen: false,
 		points: modInfo.initialStartPoints,
 		subtabs: {},
-		lastSafeTab: (layoutInfo.showTree ? "none" : layoutInfo.startTab)
+		lastSafeTab: (layoutInfo.showTree ? "none" : layoutInfo.startTab),
+		// Dijkstra options
+		layersavesettings: 'Best Only'
 	}
 }
 
@@ -574,6 +576,19 @@ function adjustGlow(type) {
 	let data = glowData[type]()
 	let index = data.indexOf(player[type+"Glow"]);
 	player[type+"Glow"] = data[(index+1)%data.length]
+}
+
+const saveSettings = ['Always Overwrite', 'Best Only', 'Never Overwrite']
+
+function cycleOptions(player, key, options) {
+	if (!options.isArray()) return
+	if (!player[key]) {
+		player[key] = options[0]
+		return
+	}
+	const optionIdx = options.findIndex(i => i === player[key])
+	optionIdx = (optionIdx + 1) % options.length
+	player[key] = options[optionIdx]
 }
 
 var styleCooldown = 0;

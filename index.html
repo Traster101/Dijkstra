@@ -102,6 +102,7 @@
 						<div><button class="tabButton" style="border-color: white;" v-on:click="player.optTab='mainOpt'">Main Options</button></div>
 						<div><button class="tabButton" style="border-color: white;" v-on:click="player.optTab='displayOpt'">Display Options</button></div>
 						<div><button class="tabButton" style="border-color: white;" v-on:click="player.optTab='notifyOpt'">Node Glow Options</button></div>
+						<div><button class="tabButton" style="border-color: white;" v-on:click="player.optTab='dijkstraOpt'">Dijkstra Mod Options</button></div>
 					</div>
 				</div>
 				<div v-if="player.optTab=='mainOpt'">
@@ -154,6 +155,12 @@
 							<td><button v-if="player.o.unlocked" class="opt" onclick="adjustGlow('sol')">Red Glow - Solarity Buyables: {{ player.solGlow.toUpperCase() }}</button></td>
 							<td><button v-if="player.m.unlocked" class="opt" onclick="adjustGlow('maj')">Red Glow - Spells: {{ player.majGlow.toUpperCase() }}</button></td>
 							<td><button v-if="player.mc.unlocked" class="opt" onclick="toggleOpt('shellGlow')">Red Glow - Shell Expansion: {{ player.shellGlow?"ON":"OFF" }}</button></td>
+						</tr>
+					</table>
+				</div><div v-if="player.optTab=='dijkstraOpt'">
+					<table>
+						<tr>
+							<td><button class="opt" onclick="cycleOptions(player, 'layerSaveSettings', saveSettings)">Layer Save Overwrite Settings: {{ player.layerSaveSettings }}</button></td>
 						</tr>
 					</table>
 				</div><br><br>
