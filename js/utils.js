@@ -1242,7 +1242,7 @@ function importSaves(imported = undefined) {
 
 
 function getSpeedrunTime(layer) {
-	const fastestSave = allSaves[player[layer].name + '_quicksave']
+	const fastestSave = allSaves[layer + '_quicksave']
 	if (!fastestSave) {
 		return '(Best Time Unknown)'
 	}

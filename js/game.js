@@ -210,7 +210,7 @@ function doReset(layer, force=false) {
 			player[layer].unlocked = true;
 			needCanvasUpdate = true;
 
-			const quicksaveName = player[layer].name + '_quicksave'
+			const quicksaveName = layer + '_quicksave'
 			const thisQuicksave = allSaves[quicksaveName]
 			if (thisQuicksave == undefined || thisQuicksave.timePlayed == undefined || 
 				(thisQuicksave.timePlayed > player.timePlayed && player.layerSaveSettings === 'Best Time') || player.layerSaveSettings === 'Always Overwrite') {
