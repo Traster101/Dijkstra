@@ -156,6 +156,8 @@ function startPlayerBase() {
 		lastSafeTab: (layoutInfo.showTree ? "none" : layoutInfo.startTab),
 		// Dijkstra options
 		layerSaveSettings: 'Best Only',
+		// Reset time - done on a per reset basis rather than a per layer basis because per layer is annoying and stupid
+		timeSinceLastReset: 0,
 	}
 }
 
@@ -1021,7 +1023,10 @@ function addTime(diff, layer) {
 	time += toNumber(diff)
 
 	if (layer) data.time = time
-	else data.timePlayed = time
+	else {
+		data.timePlayed = time
+		data.timeSinceLastReset += toNumber(diff)
+	}
 }
 
 function layOver(obj1, obj2) {

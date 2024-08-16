@@ -128,8 +128,8 @@ function rowReset(row, layer) {
 		if(layers[lr].doReset) {
 
 			player[lr].activeChallenge = null // Exit challenges on any row reset on an equal or higher row
-			layers[lr].timePlayed = new Decimal(0)
 			layers[lr].doReset(layer)
+			if (layers[resettingLayer].row > this.row) player[lr].timePlayed = new Decimal(0)
 		}
 		else
 			if(tmp[layer].row > tmp[lr].row && row !== "side") layerDataReset(lr)
@@ -183,10 +183,9 @@ function generatePoints(layer, diff) {
 var prevOnReset
 
 function doReset(layer, force=false) {
+	player.timeSinceLastReset = 0
+
 	let row = tmp[layer].row
-	for (const key in player) {
-		if (player[key] != undefined && player[key].row != undefined && player[key].row <= row) player[key].timeSinceReset = new Decimal(0)
-	}
 	if (!force) {
 		if (tmp[layer].baseAmount.lt(tmp[layer].requires)) return;
 		if (!canReset(layer)) return;
