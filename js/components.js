@@ -272,11 +272,11 @@ function loadVue() {
 		data: function() {
 			return {
 				maxGainPerSecond: 0,
-			},
+			}
 		},
 		computed: {
 			gainPerSecond: function() {
-				tmp[this.layer].resetGain.div(player[this.layer].timePlayed)
+				return tmp[this.layer].resetGain.div(player[this.layer].timePlayed)
 			},
 		},
 		watch: {
