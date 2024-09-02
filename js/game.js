@@ -130,7 +130,7 @@ function rowReset(row, layer) {
 
 			player[lr].activeChallenge = null // Exit challenges on any row reset on an equal or higher row
 			layers[lr].doReset(layer)
-			if (layers[resettingLayer].row > this.row) player[lr].timePlayed = new Decimal(0)
+			if (layers[lr].row > this.row) player[lr].timePlayed = new Decimal(0)
 		}
 		else
 			if(tmp[layer].row > tmp[lr].row && row !== "side") layerDataReset(lr)
