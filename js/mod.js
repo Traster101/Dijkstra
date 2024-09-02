@@ -15,7 +15,7 @@ let modInfo = {
 // Set your version in num and name
 let VERSION = {
 	num: "0.3",
-	patch: 5,
+	patch: 6,
 	name: "Overwrite Update",
 }
 
