@@ -126,7 +126,7 @@ function canReset(layer)
 function rowReset(row, layer) {
 	for (lr in ROW_LAYERS[row]){
 		if (layers[lr].row && layers[lr].row >= row)
-			layer[lr].timePlayed = new Decimal(0)
+			player[lr].timePlayed = new Decimal(0)
 
 		if(layers[lr].doReset) {
 
