@@ -281,7 +281,8 @@ function loadVue() {
 		},
 		watch: {
 			gainPerSecond: function(newPerSec) {
-				if (newPerSec.gte(this.maxGainPerSecond)) this.maxGainPerSecond = newPerSec
+				// 0 handles resets
+				if (newPerSec.lte(0) || newPerSec.gte(this.maxGainPerSecond)) this.maxGainPerSecond = newPerSec
 			},
 		}
 	})
