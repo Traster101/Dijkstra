@@ -264,11 +264,26 @@ function loadVue() {
 		<div style="margin-top: -13px">
 			<span v-if="tmp[layer].type=='normal'"><br><span v-if="tmp[layer].resetGain.lt(100) && player[layer].points.lt(1e3)">You have </span>{{formatWhole(tmp[layer].baseAmount)}} {{tmp[layer].baseResource}}</span>
 			<br><br>
-			<span v-if="tmp[layer].resetGain != null">Your current gain/sec average since this last row reset is {{format(tmp[layer].resetGain.div(player[layer].timePlayed))}} (NOT YET WORKING max)<br></span>
+			<span v-if="tmp[layer].resetGain != null">Your current gain/sec average since this last row reset is {{format(gainPerSecond))}} ({{ maxGainPerSecond }} max)<br></span>
 			<span v-if="tmp[layer].showBest">Your best {{tmp[layer].resource}} is {{formatWhole(player[layer].best)}}<br></span>
 			<span v-if="tmp[layer].showTotal">You have made a total of {{formatWhole(player[layer].total)}} {{tmp[layer].resource}}<br></span>
 		</div>
-		`
+		`,
+		data: function() {
+			return {
+				maxGainPerSecond: 0,
+			},
+		},
+		computed: {
+			gainPerSecond: function() {
+				tmp[this.layer].resetGain.div(player[this.layer].timePlayed)
+			},
+		},
+		watch: {
+			gainPerSecond: function(newPerSec) {
+				if (newPerSec.gte(this.maxGainPerSecond)) this.maxGainPerSecond = newPerSec
+			},
+		}
 	})
 
 	// data = button size, in px
