@@ -124,7 +124,10 @@ function canReset(layer)
 }
 
 function rowReset(row, layer) {
-	for (lr in ROW_LAYERS[row]) {
+	for (lr in ROW_LAYERS[row]){
+		if (layers[lr].row && layers[lr].row >= row)
+			layer[lr].timePlayed = new Decimal(0)
+
 		if(layers[lr].doReset) {
 
 			player[lr].activeChallenge = null // Exit challenges on any row reset on an equal or higher row
